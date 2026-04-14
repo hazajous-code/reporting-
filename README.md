@@ -10,18 +10,19 @@ Staff → Team Lead → Strategy Team → Executive
 
 ## Live Demo
 
-> **https://YOUR_USERNAME.github.io/reporting/**
+> **https://hazajous-code.github.io/reporting-/**
 >
 > No server needed — runs entirely in the browser with localStorage.
 
 ## Deploy to GitHub Pages
 
-1. Create a repo named `reporting` (or any name) on GitHub
+1. Create a repo on GitHub (this project uses `reporting-`)
 2. Push this code:
    ```bash
-   git remote add origin https://github.com/YOUR_USERNAME/reporting.git
+   git remote add origin https://github.com/hazajous-code/reporting-.git
    git add -A && git commit -m "Initial commit"
-   git push -u origin master
+   git branch -M main
+   git push -u origin main
    ```
 3. Go to **Settings → Pages → Source** → select **GitHub Actions**
 4. The workflow runs automatically — your site is live in ~1 minute
