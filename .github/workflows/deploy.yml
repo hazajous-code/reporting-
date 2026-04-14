@@ -1,3 +1,5 @@
+# GitHub 권장 패턴: configure-pages + upload-pages-artifact + deploy-pages@v5
+# 참고: https://github.com/actions/starter-workflows/blob/main/pages/nextjs.yml
 name: Deploy to GitHub Pages
 
 on:
@@ -10,43 +12,49 @@ permissions:
   pages: write
   id-token: write
 
+# 배포 중인 실행을 취소하면 사이트가 비는 경우가 있어 false 권장
 concurrency:
   group: pages
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 jobs:
-  build:
+  deploy:
     runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - uses: actions/checkout@v4
 
       - uses: actions/setup-node@v4
         with:
           node-version: 20
+          cache: npm
+          cache-dependency-path: client/package-lock.json
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
 
       - name: Install & Build
         working-directory: client
         env:
           GITHUB_PAGES: 'true'
-          # e.g. hazajous-code/reporting- → Vite base /reporting-/
           GITHUB_REPOSITORY: ${{ github.repository }}
         run: |
-          npm install
+          npm ci
           npm run build
           cp dist/index.html dist/404.html
           test -f dist/.nojekyll || touch dist/.nojekyll
-          ls -la dist
+
+      - name: Verify site root
+        run: |
+          test -f client/dist/index.html
+          test -f client/dist/404.html
+          ls -la client/dist
 
       - uses: actions/upload-pages-artifact@v3
         with:
           path: client/dist
 
-  deploy:
-    needs: build
-    runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    steps:
       - id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5
