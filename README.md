@@ -32,7 +32,7 @@ Staff → Team Lead → Strategy Team → Executive
 
 | 증상 | 확인 |
 |------|------|
-| 브라우저 전체가 GitHub 404 페이지 | Pages 소스가 **GitHub Actions**인지, Actions 배포가 성공했는지 확인 |
+| 브라우저 전체가 GitHub 404 페이지 | Pages 소스가 **GitHub Actions**인지, Actions에서 **Deploy to GitHub Pages**가 성공했는지 확인. **Environments → `github-pages`**에 대기 중인 배포가 있으면 승인해야 사이트가 공개됩니다. |
 | 메인은 되는데 새로고침만 404 | 빌드에 `404.html` 포함 여부 확인 (이 저장소 워크플로에서 `index.html`을 복사함) |
 | 흰 화면 / 자산 로드 실패 | 주소의 경로가 저장소 이름과 같은지 확인 (`/reporting-/`). CI에서는 `GITHUB_REPOSITORY`로 `base`가 자동 설정됩니다. |
 
