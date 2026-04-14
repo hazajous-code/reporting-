@@ -1,0 +1,64 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: 'Inter', 'Pretendard', system-ui, -apple-system, sans-serif;
+
+  --color-bg: #F5F0EB;
+  --color-surface: #FFFFFF;
+  --color-surface-hover: #FAF8F5;
+  --color-surface-secondary: #F5F0EB;
+
+  --color-border: #E5DDD5;
+  --color-border-light: #EDE8E3;
+
+  --color-text: #1A1613;
+  --color-text-secondary: #8C7F72;
+  --color-text-tertiary: #B3A99E;
+
+  --color-accent: #C4653A;
+  --color-accent-hover: #B3582F;
+  --color-accent-light: #F8ECE5;
+  --color-accent-muted: #E8C5B0;
+
+  --color-success: #3D8C5C;
+  --color-success-light: #E6F4EC;
+  --color-warning: #C4883A;
+  --color-warning-light: #FDF4E8;
+  --color-danger: #C43A3A;
+  --color-danger-light: #FCE8E8;
+  --color-info: #3A7EC4;
+  --color-info-light: #E5F0FA;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+::selection {
+  background-color: var(--color-accent-light);
+  color: var(--color-accent);
+}
+
+input:focus, textarea:focus, select:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px var(--color-accent-muted);
+  border-color: var(--color-accent) !important;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-border);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-text-tertiary);
+}

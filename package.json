@@ -1,0 +1,20 @@
+{
+  "name": "weekly-report-platform",
+  "version": "1.0.0",
+  "description": "주간보고 협업 플랫폼",
+  "main": "server.js",
+  "scripts": {
+    "dev:server": "node --watch server.js",
+    "dev:client": "cd client && npm run dev",
+    "build:client": "cd client && npm run build",
+    "seed": "node server/seed.js",
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "bcryptjs": "^3.0.2",
+    "sql.js": "^1.12.0",
+    "cors": "^2.8.5",
+    "express": "^5.1.0",
+    "jsonwebtoken": "^9.0.2"
+  }
+}
