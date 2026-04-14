@@ -24,10 +24,26 @@ Staff → Team Lead → Strategy Team → Executive
    git branch -M main
    git push -u origin main
    ```
-3. Go to **Settings → Pages → Source** → select **GitHub Actions**
-4. The workflow runs automatically — your site is live in ~1 minute
+3. **Settings → Pages → Build and deployment**에서 **Source**를 **GitHub Actions**로 선택합니다. (여기가 **Deploy from a branch**로 되어 있으면 사이트가 비어 **404**가 납니다.)
+4. **Actions** 탭에서 `Deploy to GitHub Pages` 워크플로가 초록색으로 끝났는지 확인합니다. 첫 배포는 **Settings → Environments → `github-pages`**에서 배포 승인이 필요할 수 있습니다.
+5. 주소는 저장소 이름과 같습니다: `https://hazajous-code.github.io/reporting-/`
 
-> If you rename the repo, update `base` in `client/vite.config.js` to match `'/your-repo-name/'`.
+### 404가 날 때 (GitHub Pages)
+
+| 증상 | 확인 |
+|------|------|
+| 브라우저 전체가 GitHub 404 페이지 | Pages 소스가 **GitHub Actions**인지, Actions 배포가 성공했는지 확인 |
+| 메인은 되는데 새로고침만 404 | 빌드에 `404.html` 포함 여부 확인 (이 저장소 워크플로에서 `index.html`을 복사함) |
+| 흰 화면 / 자산 로드 실패 | 주소의 경로가 저장소 이름과 같은지 확인 (`/reporting-/`). CI에서는 `GITHUB_REPOSITORY`로 `base`가 자동 설정됩니다. |
+
+로컬에서 Pages와 동일하게 빌드하려면:
+
+```powershell
+cd client
+$env:GITHUB_PAGES='true'
+$env:GITHUB_REPOSITORY='hazajous-code/reporting-'
+npm run build
+```
 
 ## Local Development
 
